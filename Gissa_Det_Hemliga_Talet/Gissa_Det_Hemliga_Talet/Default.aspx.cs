@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Gissa_Det_Hemliga_Talet.Model;
 
 namespace Gissa_Det_Hemliga_Talet
 {
@@ -12,6 +13,19 @@ namespace Gissa_Det_Hemliga_Talet
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Send_Click(object sender, EventArgs e)
+        {
+            if (IsValid)
+            {
+                var sec = new SecretNumber();
+                int input = int.Parse(Input.Text);
+                
+
+                sec.MakeGuess(input);
+                
+            }
         }
     }
 }
