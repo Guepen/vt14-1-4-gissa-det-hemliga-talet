@@ -23,10 +23,10 @@ namespace Gissa_Det_Hemliga_Talet.Model
                 {
                     Outcome = Outcome.NoMoreGuesses;
 
-                    return false;
+                    return true;
                 }
 
-                return true;
+                return false;
             }
         }
 
@@ -85,12 +85,12 @@ namespace Gissa_Det_Hemliga_Talet.Model
             }
 
 
-            if (guess < _number)
+            if (guess < Number)
             {
                 return Outcome.Low;
             }
 
-            if (guess > _number)
+            if (guess > Number)
             {
                 return Outcome.High;
             }

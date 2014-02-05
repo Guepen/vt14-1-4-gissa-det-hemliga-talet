@@ -10,6 +10,7 @@ namespace Gissa_Det_Hemliga_Talet
 {
     public partial class Default : System.Web.UI.Page
     {
+        public SecretNumber secretNumber { get { return Session["secretNumber"] as SecretNumber; } set { Session["secretNumber"] = value; } }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,6 +25,27 @@ namespace Gissa_Det_Hemliga_Talet
                 
 
                 sec.MakeGuess(input);
+
+                switch (sec.MakeGuess(input))
+                {
+                    case Outcome.Indefinite:
+                        break;
+                    case Outcome.Low:
+                        Label2.Text = "Gissningen var för låg!";
+                        break;
+                    case Outcome.High:
+                        Label2.Text = "Gissningen var för Hög!";
+                        break;
+                    case Outcome.Correct:
+                        Label2.Text = "Gissningen var rätt :)!";
+                        break;
+                    case Outcome.NoMoreGuesses:
+                        break;
+                    case Outcome.PreveiousGuess:
+                        break;
+                    default:
+                        break;
+                }
                 
             }
         }

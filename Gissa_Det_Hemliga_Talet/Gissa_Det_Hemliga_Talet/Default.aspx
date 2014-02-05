@@ -25,7 +25,7 @@
         
         <div>
             <asp:PlaceHolder ID="PlaceHolder1" runat="server">
-                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Hej"></asp:Label>
             </asp:PlaceHolder>
         
        </div>
