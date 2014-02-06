@@ -10,7 +10,12 @@ namespace Gissa_Det_Hemliga_Talet
 {
     public partial class Default : System.Web.UI.Page
     {
-        public SecretNumber secretNumber { get { return Session["secretNumber"] as SecretNumber; } set { Session["secretNumber"] = value; } }
+        public SecretNumber secretNumber { get {
+            if (Session["secretNumber"] == null)
+            {
+                Session["secretNumber"] = new SecretNumber();   
+            }
+            return Session["secretNumber"] as SecretNumber; } set { Session["secretNumber"] = value; } }
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -20,13 +25,9 @@ namespace Gissa_Det_Hemliga_Talet
         {
             if (IsValid)
             {
-                var sec = new SecretNumber();
                 int input = int.Parse(Input.Text);
                 
-
-                sec.MakeGuess(input);
-
-                switch (sec.MakeGuess(input))
+                switch (secretNumber.MakeGuess(input))
                 {
                     case Outcome.Indefinite:
                         break;
