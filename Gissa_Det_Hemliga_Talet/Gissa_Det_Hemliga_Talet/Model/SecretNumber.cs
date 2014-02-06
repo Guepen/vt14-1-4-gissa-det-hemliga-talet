@@ -19,15 +19,10 @@ namespace Gissa_Det_Hemliga_Talet.Model
         {
             get
             {
-                if (Count == MaxNumberOfGuesses)
-                {
-                    Outcome = Outcome.NoMoreGuesses;
-
-                    return true;
-                }
-
-                return false;
+                return Count < MaxNumberOfGuesses;
+               
             }
+
         }
 
         public int Count
@@ -74,40 +69,37 @@ namespace Gissa_Det_Hemliga_Talet.Model
 
         public Outcome MakeGuess(int guess)
         {
-            if (guess < 1 || guess > 100)
-            { 
-                throw new ArgumentOutOfRangeException();
-            }
-
-            if (Count > MaxNumberOfGuesses)
-            { 
-                throw new ApplicationException(); 
-            }
-
-
-            if (guess < Number)
+            if (Count >= MaxNumberOfGuesses)
             {
-                return Outcome.Low;
+                return Outcome.NoMoreGuesses;
             }
 
-            if (guess > Number)
+            if (PreviousGuesses.Contains(guess))
             {
-                return Outcome.High;
+                return Outcome.PreveiousGuess;
             }
 
-            else
+            _preveiousGuesses.Add(guess);
+
+            if(guess < _number)
             {
-               
-                return Outcome.Correct;
+               return Outcome.Low;
+
             }
 
-            
+            else if (guess > _number)
+            {
+               return Outcome.High;
+            }
 
-        }
+            else{
+                return Outcome.Correct;   
+            }
+
+         }
 
         public SecretNumber()
         {
-           
             _preveiousGuesses = new List<int>(MaxNumberOfGuesses);
             Initialize();
         }

@@ -1,0 +1,16 @@
+﻿body {
+    width:400px;
+    height:550px;
+    margin:auto;
+    font-style:oblique;
+    border:3px solid black;
+    margin-top:25px;
+}
+
+h1 {
+    border-bottom:20px solid orange;
+}
+
+button {
+    margin-top:15px;
+}
